@@ -15,7 +15,6 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-
 return [
     EntityManagerInterface::class => function (ContainerInterface $container): EntityManagerInterface {
         /**
