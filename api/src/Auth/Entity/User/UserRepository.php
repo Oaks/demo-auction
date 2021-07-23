@@ -11,8 +11,14 @@ use DomainException;
 class UserRepository
 {
     private EntityManagerInterface $em;
+    /**
+     * @var EntityRepository<User>
+     */
     private EntityRepository $repo;
 
+    /**
+     * @param EntityRepository<User> $repo
+     */
     public function __construct(EntityManagerInterface $em, EntityRepository $repo)
     {
         $this->em = $em;
@@ -74,7 +80,8 @@ class UserRepository
 
     public function get(Id $id): User
     {
-        if (!$user = $this->repo->find($id->getValue())) {
+        $user = $this->repo->find($id->getValue());
+        if ($user === null) {
             throw new DomainException('User is not found.');
         }
         /** @var User $user */
@@ -83,7 +90,8 @@ class UserRepository
 
     public function getByEmail(Email $email): User
     {
-        if (!$user = $this->repo->findOneBy(['email' => $email->getValue()])) {
+        $user = $this->repo->findOneBy(['email' => $email->getValue()]);
+        if ($user === null) {
             throw new DomainException('User is not found.');
         }
         /** @var User $user */
