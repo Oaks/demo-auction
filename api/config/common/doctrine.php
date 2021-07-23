@@ -19,14 +19,14 @@ return [
     EntityManagerInterface::class => function (ContainerInterface $container): EntityManagerInterface {
         /**
          * @psalm-suppress MixedArrayAccess
-         * @psalm-var array{
+         * @var array{
          *     metadata_dirs:array,
          *     dev_mode:bool,
          *     proxy_dir:string,
          *     cache_dir:?string,
-         *     types:array<string,string>,
+         *     types:array<string,class-string<Doctrine\DBAL\Types\Type>>,
          *     subscribers:string[],
-         *     connection:array
+         *     connection:array<string, mixed>
          * } $settings
          */
         $settings = $container->get('config')['doctrine'];
