@@ -60,6 +60,7 @@ class User
      */
     private Role $role;
     /**
+     * @var Collection<array-key,UserNetwork>
      * @ORM\OneToMany(targetEntity="UserNetwork", mappedBy="user", cascade={"all"}, orphanRemoval=true)
      */
     private Collection $networks;
